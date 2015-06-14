@@ -1,0 +1,54 @@
+
+<div>
+    <h2><span>Category</span> {{category.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span>Name</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{category.name}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Color</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{category.color}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>TimeToWait</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{category.timeToWait}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>vineward</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{category.vineward.name}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="category"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

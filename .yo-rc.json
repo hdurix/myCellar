@@ -1,0 +1,21 @@
+{
+  "generator-jhipster": {
+    "baseName": "mycellar",
+    "packageName": "fr.hippo.mycellar",
+    "packageFolder": "fr/hippo/mycellar",
+    "authenticationType": "session",
+    "hibernateCache": "no",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "no",
+    "useCompass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "javaVersion": "8",
+    "enableTranslation": false,
+    "rememberMeKey": "1b3d70cebefaf8b8f2b4f9336df5d76d454ffa7f"
+  }
+}

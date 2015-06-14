@@ -1,0 +1,62 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "bottle",
+            "relationshipNameCapitalized": "Bottle",
+            "relationshipFieldName": "bottle",
+            "otherEntityName": "bottle",
+            "relationshipType": "one-to-one",
+            "otherEntityNameCapitalized": "Bottle",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "bottleLife"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "user",
+            "relationshipNameCapitalized": "User",
+            "relationshipFieldName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "one-to-one",
+            "otherEntityNameCapitalized": "User",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "bottleLife"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "boughtDate",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "BoughtDate",
+            "fieldNameUnderscored": "bought_date",
+            "fieldInJavaBeanMethod": "BoughtDate",
+            "fieldValidate": true,
+            "fieldValidateRules": []
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "drinkedDate",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "DrinkedDate",
+            "fieldNameUnderscored": "drinked_date",
+            "fieldInJavaBeanMethod": "DrinkedDate",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOwnerOneToOne": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": true,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": true,
+    "fieldsContainDate": false,
+    "changelogDate": "20150612212357",
+    "dto": "no",
+    "pagination": "pagination",
+    "validation": true
+}

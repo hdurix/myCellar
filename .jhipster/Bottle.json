@@ -1,0 +1,68 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "category",
+            "relationshipNameCapitalized": "Category",
+            "relationshipFieldName": "category",
+            "otherEntityName": "category",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Category",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "bottleLife",
+            "relationshipNameCapitalized": "BottleLife",
+            "relationshipFieldName": "bottleLife",
+            "otherEntityName": "bottleLife",
+            "relationshipType": "one-to-one",
+            "otherEntityNameCapitalized": "BottleLife",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "year",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Year",
+            "fieldNameUnderscored": "year",
+            "fieldInJavaBeanMethod": "Year",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "price",
+            "fieldType": "Long",
+            "fieldNameCapitalized": "Price",
+            "fieldNameUnderscored": "price",
+            "fieldInJavaBeanMethod": "Price",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "image",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Image",
+            "fieldNameUnderscored": "image",
+            "fieldInJavaBeanMethod": "Image",
+            "fieldValidate": false
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOwnerOneToOne": true,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150612212616",
+    "dto": "no",
+    "pagination": "pagination",
+    "validation": true
+}

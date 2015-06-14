@@ -1,0 +1,71 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "vineward",
+            "relationshipNameCapitalized": "Vineward",
+            "relationshipFieldName": "vineward",
+            "otherEntityName": "vineward",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Vineward",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "bottle",
+            "relationshipNameCapitalized": "Bottle",
+            "relationshipFieldName": "bottle",
+            "otherEntityName": "bottle",
+            "relationshipType": "one-to-many",
+            "otherEntityNameCapitalized": "Bottle",
+            "otherEntityRelationshipName": "category"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Name",
+            "fieldNameUnderscored": "name",
+            "fieldInJavaBeanMethod": "Name",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "color",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Color",
+            "fieldNameUnderscored": "color",
+            "fieldInJavaBeanMethod": "Color",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "timeToWait",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "TimeToWait",
+            "fieldNameUnderscored": "time_to_wait",
+            "fieldInJavaBeanMethod": "TimeToWait",
+            "fieldValidate": false
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOwnerOneToOne": false,
+    "fieldsContainOneToMany": true,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150612211641",
+    "dto": "no",
+    "pagination": "pagination",
+    "validation": true
+}

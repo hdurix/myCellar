@@ -1,0 +1,59 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "domain",
+            "relationshipNameCapitalized": "Domain",
+            "relationshipFieldName": "domain",
+            "otherEntityName": "domain",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Domain",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "category",
+            "relationshipNameCapitalized": "Category",
+            "relationshipFieldName": "category",
+            "otherEntityName": "category",
+            "relationshipType": "one-to-many",
+            "otherEntityNameCapitalized": "Category",
+            "otherEntityRelationshipName": "vineward"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Name",
+            "fieldNameUnderscored": "name",
+            "fieldInJavaBeanMethod": "Name",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "location",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Location",
+            "fieldNameUnderscored": "location",
+            "fieldInJavaBeanMethod": "Location",
+            "fieldValidate": false
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOwnerOneToOne": false,
+    "fieldsContainOneToMany": true,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150612211358",
+    "dto": "no",
+    "pagination": "pagination",
+    "validation": true
+}
