@@ -2,6 +2,7 @@ package fr.hippo.mycellar.web.rest;
 
 import fr.hippo.mycellar.Application;
 import fr.hippo.mycellar.domain.Category;
+import fr.hippo.mycellar.domain.ColorEnum;
 import fr.hippo.mycellar.repository.CategoryRepository;
 
 import org.junit.Before;
@@ -40,8 +41,8 @@ public class CategoryResourceTest {
 
     private static final String DEFAULT_NAME = "SAMPLE_TEXT";
     private static final String UPDATED_NAME = "UPDATED_TEXT";
-    private static final String DEFAULT_COLOR = "SAMPLE_TEXT";
-    private static final String UPDATED_COLOR = "UPDATED_TEXT";
+    private static final ColorEnum DEFAULT_COLOR = ColorEnum.WHITE;
+    private static final ColorEnum UPDATED_COLOR = ColorEnum.RED;
 
     private static final Integer DEFAULT_TIME_TO_WAIT = 0;
     private static final Integer UPDATED_TIME_TO_WAIT = 1;
@@ -189,7 +190,7 @@ public class CategoryResourceTest {
         assertThat(categorys).hasSize(databaseSizeBeforeUpdate);
         Category testCategory = categorys.get(categorys.size() - 1);
         assertThat(testCategory.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testCategory.getColor()).isEqualTo(UPDATED_COLOR);
+        assertThat(testCategory.getColor()).isEqualTo(UPDATED_COLOR.name());
         assertThat(testCategory.getTimeToWait()).isEqualTo(UPDATED_TIME_TO_WAIT);
     }
 

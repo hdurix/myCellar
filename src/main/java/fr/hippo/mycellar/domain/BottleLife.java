@@ -32,7 +32,6 @@ public class BottleLife implements Serializable {
     @Column(name = "bought_date")
     private DateTime boughtDate;
 
-    @NotNull
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)

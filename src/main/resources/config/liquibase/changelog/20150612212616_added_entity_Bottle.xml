@@ -21,7 +21,7 @@
             <column name="year" type="integer">
                 <constraints nullable="false" />
             </column>
-            <column name="price" type="bigint"/>
+            <column name="price" type="float"/>
             <column name="image" type="varchar(255)"/>
             <column name="category_id" type="bigint"/>
 

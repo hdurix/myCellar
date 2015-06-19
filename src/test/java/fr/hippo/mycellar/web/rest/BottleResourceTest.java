@@ -42,8 +42,8 @@ public class BottleResourceTest {
     private static final Integer DEFAULT_YEAR = 0;
     private static final Integer UPDATED_YEAR = 1;
 
-    private static final Long DEFAULT_PRICE = 0L;
-    private static final Long UPDATED_PRICE = 1L;
+    private static final Float DEFAULT_PRICE = 0F;
+    private static final Float UPDATED_PRICE = 1F;
     private static final String DEFAULT_IMAGE = "SAMPLE_TEXT";
     private static final String UPDATED_IMAGE = "UPDATED_TEXT";
 

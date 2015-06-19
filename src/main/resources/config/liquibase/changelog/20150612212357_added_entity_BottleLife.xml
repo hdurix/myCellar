@@ -19,9 +19,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="bought_date" type="timestamp"/>
-            <column name="drinked_date" type="timestamp">
-                <constraints nullable="false" />
-            </column>
+            <column name="drinked_date" type="timestamp"/>
             <column name="bottle_id" type="bigint"/>
             <column name="user_id" type="bigint"/>
         </createTable>

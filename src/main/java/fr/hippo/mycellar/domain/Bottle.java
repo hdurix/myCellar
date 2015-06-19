@@ -25,7 +25,7 @@ public class Bottle implements Serializable {
     private Integer year;
 
     @Column(name = "price")
-    private Long price;
+    private Float price;
 
     @Column(name = "image")
     private String image;
@@ -33,8 +33,8 @@ public class Bottle implements Serializable {
     @ManyToOne
     private Category category;
 
-    @OneToOne(mappedBy = "bottle")
-    private BottleLife bottleLife;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "bottle")
+    private Set<BottleLife> bottleLifes = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -52,11 +52,11 @@ public class Bottle implements Serializable {
         this.year = year;
     }
 
-    public Long getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
@@ -76,12 +76,12 @@ public class Bottle implements Serializable {
         this.category = category;
     }
 
-    public BottleLife getBottleLife() {
-        return bottleLife;
+    public Set<BottleLife> getBottleLifes() {
+        return bottleLifes;
     }
 
-    public void setBottleLife(BottleLife bottleLife) {
-        this.bottleLife = bottleLife;
+    public void setBottleLifes(Set<BottleLife> bottleLifes) {
+        this.bottleLifes = bottleLifes;
     }
 
     @Override

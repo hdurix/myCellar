@@ -13,4 +13,6 @@
     <include file="classpath:config/liquibase/changelog/20150612212616_added_entity_Bottle.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150612212357_added_entity_BottleLife.xml" relativeToChangelogFile="false"/>
     <!-- JHipster will add liquibase changelogs here -->
+
+    <include file="classpath:config/liquibase/changelog/load_data.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

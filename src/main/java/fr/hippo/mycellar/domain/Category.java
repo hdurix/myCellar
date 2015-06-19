@@ -25,8 +25,9 @@ public class Category implements Serializable {
     private String name;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "color", nullable = false)
-    private String color;
+    private ColorEnum color;
 
     @Column(name = "time_to_wait")
     private Integer timeToWait;
@@ -54,11 +55,11 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public String getColor() {
+    public ColorEnum getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(ColorEnum color) {
         this.color = color;
     }
 
