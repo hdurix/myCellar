@@ -1,24 +1,28 @@
 'use strict';
 
 angular.module('mycellarApp')
-    .controller('BottleController', function ($scope, Bottle, Category, BottleLife, ParseLinks, MycellarOptions) {
+    .controller('BottleController', function ($scope, $filter, Bottle, Category, BottleLife, ParseLinks, MycellarOptions) {
         $scope.bottles = [];
+        $scope.filteredBottles = [];
         $scope.categorys = Category.query();
         $scope.bottlelifes = BottleLife.query();
         $scope.page = 1;
         $scope.loadAll = function() {
-            $scope.bottles = Bottle.dto();
+            Bottle.dto(function(data) {
+                $scope.bottles = data;
+                $scope.filteredBottles = data;
+            });
         };
         $scope.loadAll();
 
         $scope.options = MycellarOptions;
 
-        console.log($scope.options);
-
         $scope.config = {
             itemsPerPage: 12,
             fillLastPage: true
         }
+
+        $scope.search = {};
 
         $scope.showUpdate = function (id) {
             Bottle.get({id: id}, function(result) {
@@ -68,4 +72,8 @@ angular.module('mycellarApp')
             $scope.editForm.$setPristine();
             $scope.editForm.$setUntouched();
         };
+
+        $scope.filterBottles = function() {
+            $scope.filteredBottles = $filter('filter')($scope.bottles, $scope.search);
+        }
     });

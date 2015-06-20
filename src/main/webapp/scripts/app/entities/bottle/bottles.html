@@ -7,7 +7,7 @@
             <div class="row">
 
                 <div class="col-sm-6">
-                    <h2>Liste des bouteilles</h2>
+                    <h4>Liste des bouteilles</h4>
                 </div>
 
                 <div class="col-sm-6 text-right">
@@ -111,8 +111,28 @@
                 </div>
             </div>
 
+            <form class="form-inline text-center">
+                <div class="form-group">
+                    <label>Filtres : </label>
+                    <input type="text" placeholder="-- Buveur --" ng-model="search.user" ng-change="filterBottles()"
+                        class="form-control">
+                    <input type="text" placeholder="-- Appellation --" ng-model="search.appellation" ng-change="filterBottles()"
+                        class="form-control">
+                    <input type="text" placeholder="-- Domaine --" ng-model="search.domain" ng-change="filterBottles()"
+                        class="form-control">
+                    <input type="text" placeholder="-- Vigneron --" ng-model="search.vineward" ng-change="filterBottles()"
+                        class="form-control">
+                    <input type="text" placeholder="-- Catégorie --" ng-model="search.category" ng-change="filterBottles()"
+                        class="form-control">
+                    <input type="text" placeholder="-- Année --" ng-model="search.year" ng-change="filterBottles()"
+                        class="form-control">
+                </div>
+            </form>
+
+            <hr/>
+
             <div class="table-responsive">
-                <table at-table at-list="bottles" class="table table-hover" at-config="config" at-paginated>
+                <table at-table at-list="filteredBottles" class="table table-hover" at-config="config" at-paginated>
                     <thead></thead>
                     <tbody>
                     <tr>
@@ -133,7 +153,7 @@
 
         </div>
         <div class="panel-bottom bg-primary text-center">
-            <at-pagination at-config="config" at-list="bottles"></at-pagination>
+            <at-pagination at-config="config" at-list="filteredBottles"></at-pagination>
         </div>
     </div>
 </div>
