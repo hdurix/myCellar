@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mycellarApp', ['LocalStorageModule', 
-    'ngResource', 'ui.router', 'ngCookies', 'ngCacheBuster', 'infinite-scroll'])
+angular.module('mycellarApp', ['LocalStorageModule',
+    'ngResource', 'ui.router', 'ngCookies', 'ngCacheBuster', 'infinite-scroll', 'angular-table'])
 
     .run(function ($rootScope, $location, $window, $http, $state,  Auth, Principal, ENV, VERSION) {
         $rootScope.ENV = ENV;
@@ -13,7 +13,7 @@ angular.module('mycellarApp', ['LocalStorageModule',
             if (Principal.isIdentityResolved()) {
                 Auth.authorize();
             }
-            
+
         });
 
         $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
@@ -65,5 +65,5 @@ angular.module('mycellarApp', ['LocalStorageModule',
             }
         });
 
-        
+
     });

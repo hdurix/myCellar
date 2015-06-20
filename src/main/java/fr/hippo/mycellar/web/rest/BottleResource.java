@@ -3,6 +3,8 @@ package fr.hippo.mycellar.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import fr.hippo.mycellar.domain.Bottle;
 import fr.hippo.mycellar.repository.BottleRepository;
+import fr.hippo.mycellar.repository.BottleRepositoryCustom;
+import fr.hippo.mycellar.web.rest.dto.BottleDTO;
 import fr.hippo.mycellar.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +33,9 @@ public class BottleResource {
 
     @Inject
     private BottleRepository bottleRepository;
+
+    @Inject
+    private BottleRepositoryCustom bottleRepositoryCustom;
 
     /**
      * POST  /bottles -> Create a new bottle.
@@ -77,6 +82,17 @@ public class BottleResource {
         Page<Bottle> page = bottleRepository.findAll(PaginationUtil.generatePageRequest(offset, limit));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/bottles", offset, limit);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /bottles -> get all the bottles.
+     */
+    @RequestMapping(value = "/bottles",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE, params = {"dto"})
+    @Timed
+    public ResponseEntity<List<BottleDTO>> getAllDTO() throws URISyntaxException {
+        return new ResponseEntity<List<BottleDTO>>(bottleRepositoryCustom.getAllDto(), HttpStatus.OK);
     }
 
     /**

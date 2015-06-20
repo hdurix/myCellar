@@ -145,3 +145,9 @@ ul#strength {
     width:20px;
 }
 /* end Password strength bar style */
+
+/* my Cellar custom style */
+
+.container {
+    width: 95%
+}

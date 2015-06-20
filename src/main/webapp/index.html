@@ -23,7 +23,7 @@
         <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>
         <div ui-view="navbar" ng-cloak=""></div>
         <div class="container">
-            <div class="well" ui-view="content"></div>
+            <div ui-view="content"></div>
 
             <div class="footer">
                 <p translate="footer">This is your footer</p>
@@ -55,6 +55,7 @@
         <script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
         <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
         <!-- endbower -->
+        <script src="bower_components/at-table/dist/angular-table.js"></script>
         <!-- endbuild -->
 
 
@@ -80,6 +81,8 @@
     <script src="scripts/components/user/user.service.js"></script>
     <script src="scripts/components/util/truncate.filter.js"></script>
     <script src="scripts/components/util/base64.service.js"></script>
+    <script src="scripts/components/util/mycellar.filter.js"></script>
+    <script src="scripts/components/util/options.mycellar.service.js"></script>
     <script src="scripts/components/util/parse-links.service.js"></script>
     <script src="scripts/components/util/dateutil.service.js"></script>
     <script src="scripts/app/account/account.js"></script>

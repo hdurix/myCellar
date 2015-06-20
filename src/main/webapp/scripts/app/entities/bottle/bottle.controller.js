@@ -1,22 +1,24 @@
 'use strict';
 
 angular.module('mycellarApp')
-    .controller('BottleController', function ($scope, Bottle, Category, BottleLife, ParseLinks) {
+    .controller('BottleController', function ($scope, Bottle, Category, BottleLife, ParseLinks, MycellarOptions) {
         $scope.bottles = [];
         $scope.categorys = Category.query();
         $scope.bottlelifes = BottleLife.query();
         $scope.page = 1;
         $scope.loadAll = function() {
-            Bottle.query({page: $scope.page, per_page: 20}, function(result, headers) {
-                $scope.links = ParseLinks.parse(headers('link'));
-                $scope.bottles = result;
-            });
-        };
-        $scope.loadPage = function(page) {
-            $scope.page = page;
-            $scope.loadAll();
+            $scope.bottles = Bottle.dto();
         };
         $scope.loadAll();
+
+        $scope.options = MycellarOptions;
+
+        console.log($scope.options);
+
+        $scope.config = {
+            itemsPerPage: 12,
+            fillLastPage: true
+        }
 
         $scope.showUpdate = function (id) {
             Bottle.get({id: id}, function(result) {
