@@ -16,9 +16,10 @@ public class BottleDTO {
     private final Integer year;
     private final Float price;
     private final String user;
+    private final Long number;
 
     public BottleDTO(String country, String appellation, String domain, String vineward, String category,
-                     Integer timeToWait, String color, Integer year, Float price, String user) {
+                     Integer timeToWait, String color, Integer year, Float price, String user, Long number) {
         this.country = country;
         this.appellation = appellation;
         this.domain = domain;
@@ -29,6 +30,7 @@ public class BottleDTO {
         this.year = year;
         this.price = price;
         this.user = user;
+        this.number = number;
     }
 
     public String getCountry() {
@@ -71,6 +73,10 @@ public class BottleDTO {
         return user;
     }
 
+    public Long getNumber() {
+        return number;
+    }
+
     public static class Builder {
         private String country;
         private String appellation;
@@ -82,6 +88,7 @@ public class BottleDTO {
         private Integer year;
         private Float price;
         private String user;
+        private Long number;
 
         public Builder() {
         }
@@ -97,6 +104,7 @@ public class BottleDTO {
             year = null;
             price = null;
             user = null;
+            number = null;
             return this;
         }
 
@@ -150,8 +158,13 @@ public class BottleDTO {
             return this;
         }
 
+        public Builder setNumber(Long number) {
+            this.number = number;
+            return this;
+        }
+
         public BottleDTO build() {
-            return new BottleDTO(country, appellation, domain, vineward, category, timeToWait, color, year, price, user);
+            return new BottleDTO(country, appellation, domain, vineward, category, timeToWait, color, year, price, user, number);
         }
     }
 }
