@@ -28,10 +28,10 @@ public class Vineward implements Serializable {
     private String location;
 
     @ManyToOne
+    @JsonIgnore
     private Domain domain;
 
     @OneToMany(mappedBy = "vineward")
-    @JsonIgnore
     private Set<Category> categorys = new HashSet<>();
 
     public Long getId() {

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mycellarApp')
-    .controller('BottleController', function ($scope, $filter, Bottle, Category, BottleLife, ParseLinks, MycellarOptions) {
+    .controller('BottleController', function ($scope, $filter, Bottle, Country, Category, BottleLife, ParseLinks, MycellarOptions) {
         $scope.bottles = [];
         $scope.filteredBottles = [];
         $scope.categorys = Category.query();
@@ -23,6 +23,8 @@ angular.module('mycellarApp')
         }
 
         $scope.search = {};
+
+        $scope.allData = Country.withDependencies();
 
         $scope.showUpdate = function (id) {
             Bottle.get({id: id}, function(result) {

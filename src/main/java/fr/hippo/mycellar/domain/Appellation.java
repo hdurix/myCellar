@@ -25,10 +25,10 @@ public class Appellation implements Serializable {
     private String name;
 
     @ManyToOne
+    @JsonIgnore
     private Country country;
 
     @OneToMany(mappedBy = "appellation")
-    @JsonIgnore
     private Set<Domain> domains = new HashSet<>();
 
     public Long getId() {

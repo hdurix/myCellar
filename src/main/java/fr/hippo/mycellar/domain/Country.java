@@ -25,7 +25,6 @@ public class Country implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "country")
-    @JsonIgnore
     private Set<Appellation> appellations = new HashSet<>();
 
     public Long getId() {

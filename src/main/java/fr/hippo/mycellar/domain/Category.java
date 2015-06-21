@@ -33,10 +33,10 @@ public class Category implements Serializable {
     private Integer timeToWait;
 
     @ManyToOne
+    @JsonIgnore
     private Vineward vineward;
 
     @OneToMany(mappedBy = "category")
-    @JsonIgnore
     private Set<Bottle> bottles = new HashSet<>();
 
     public Long getId() {

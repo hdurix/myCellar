@@ -31,6 +31,7 @@ public class Bottle implements Serializable {
     private String image;
 
     @ManyToOne
+    @JsonIgnore
     private Category category;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "bottle")

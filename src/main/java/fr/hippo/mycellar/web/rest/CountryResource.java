@@ -74,6 +74,17 @@ public class CountryResource {
     }
 
     /**
+     * GET  /countrys -> get all the countrys.
+     */
+    @RequestMapping(value = "/countrys", method = RequestMethod.GET, params = {"withDependencies"},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<Country> getAllWithDependencies() {
+        log.debug("REST request to get all Countries");
+        return countryRepository.findAllWithDependencies();
+    }
+
+    /**
      * GET  /countrys/:id -> get the "id" country.
      */
     @RequestMapping(value = "/countrys/{id}",
