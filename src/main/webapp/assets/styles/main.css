@@ -151,9 +151,3 @@ ul#strength {
 .container {
     width: 99%;
 }
-
-.form-control.form-control-with-btn {
-    display: inline-block;
-    width: calc(100% - 150px);
-    margin: 0 10px;
-}
