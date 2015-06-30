@@ -33,20 +33,6 @@ angular.module('mycellarApp')
             });
         };
 
-        $scope.save = function () {
-            if ($scope.bottle.id != null) {
-                Bottle.update($scope.bottle,
-                    function () {
-                        $scope.refresh();
-                    });
-            } else {
-                Bottle.save($scope.bottle,
-                    function () {
-                        $scope.refresh();
-                    });
-            }
-        };
-
         $scope.delete = function (id) {
             Bottle.get({id: id}, function(result) {
                 $scope.bottle = result;

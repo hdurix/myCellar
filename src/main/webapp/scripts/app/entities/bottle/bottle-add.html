@@ -1,0 +1,106 @@
+
+<div ng-include="'scripts/app/entities/country/country-add-modal.html'"></div>
+
+<div class="panel panel-primary">
+
+    <div class="panel-heading">
+        <div class="row">
+
+            <div class="col-sm-6">
+                <h4>Ajouter une bouteille</h4>
+            </div>
+
+            <div class="col-sm-6 text-right">
+                <button class="btn btn-info" ui-sref="bottle()">
+                    <span class="glyphicon glyphicon-arrow-left"></span> <span>Revenir à la liste</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body bg-info">
+        <form name="editFormBottle" role="form" novalidate ng-submit="save()" show-validation>
+            <div class="row">
+                <div class="col-xs-9 col-sm-10 form-group">
+                    <label>Pays</label>
+                    <select class="form-control" name="country"
+                            ng-model="bottle.country"
+                            ng-options="country as country.name for country in allData">
+                    </select>
+                </div>
+                <div class="col-xs-3 col-sm-2">
+                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
+                            data-target="#saveCountryModal" ng-click="clear()"
+                            style="margin-top: 27px;">
+                        <span class="glyphicon glyphicon-plus"></span> <span>Nouveau</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Appellation</label>
+                <select class="form-control" name="appellation" ng-disabled="!bottle.country"
+                        ng-model="bottle.appellation"
+                        ng-options="appellation as appellation.name for appellation in bottle.country.appellations">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Domaine</label>
+                <select class="form-control" name="domain" ng-disabled="!bottle.appellation"
+                        ng-model="bottle.domain"
+                        ng-options="domain as domain.name for domain in bottle.appellation.domains">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Vigneron</label>
+                <select class="form-control" name="vineward" ng-disabled="!bottle.domain"
+                        ng-model="bottle.vineward"
+                        ng-options="vineward as vineward.name for vineward in bottle.domain.vinewards">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Catégorie</label>
+                <select class="form-control" name="category" ng-disabled="!bottle.vineward"
+                        ng-model="bottle.category"
+                        ng-options="category as category.name for category in bottle.vineward.categorys">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Bouteille</label>
+                <select class="form-control" name="bottle" ng-disabled="!bottle.category"
+                        ng-model="bottle.bottle"
+                        ng-options="bottle as bottle.year for bottle in bottle.category.bottles">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Number</label>
+                <input type="number" class="form-control" name="number"
+                       ng-model="bottle.number" required>
+
+                <div ng-show="editForm.number.$invalid">
+                    <p class="help-block"
+                       ng-show="editForm.number.$error.required">
+                        This field is required.
+                    </p>
+                    <p class="help-block"
+                       ng-show="editForm.number.$error.number">
+                        This field should be a number.
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                    <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

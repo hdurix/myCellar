@@ -34,5 +34,21 @@ angular.module('mycellarApp')
                 },
                 resolve: {
                 }
+            })
+            .state('bottleAdd', {
+                parent: 'entity',
+                url: '/bottle-add/:id',
+                data: {
+                    roles: ['ROLE_USER'],
+                    pageTitle: 'Nouvelle bouteille'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/entities/bottle/bottle-add.html',
+                        controller: 'BottleAddController'
+                    }
+                },
+                resolve: {
+                }
             });
     });

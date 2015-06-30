@@ -18,7 +18,7 @@ angular.module('mycellarApp')
             });
         };
 
-        $scope.save = function () {
+        $scope.saveCountry = function () {
             if ($scope.country.id != null) {
                 Country.update($scope.country,
                     function () {
