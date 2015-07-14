@@ -4,7 +4,10 @@ import com.codahale.metrics.annotation.Timed;
 import fr.hippo.mycellar.domain.Bottle;
 import fr.hippo.mycellar.repository.BottleRepository;
 import fr.hippo.mycellar.repository.BottleRepositoryCustom;
+import fr.hippo.mycellar.service.BottleService;
+import fr.hippo.mycellar.web.rest.dto.BottleCreateDTO;
 import fr.hippo.mycellar.web.rest.dto.BottleDTO;
+import fr.hippo.mycellar.web.rest.dto.BottleDrinkDTO;
 import fr.hippo.mycellar.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +40,9 @@ public class BottleResource {
     @Inject
     private BottleRepositoryCustom bottleRepositoryCustom;
 
+    @Inject
+    private BottleService bottleService;
+
     /**
      * POST  /bottles -> Create a new bottle.
      */
@@ -54,6 +60,23 @@ public class BottleResource {
     }
 
     /**
+     * POST  /bottles -> Create a new bottle.
+     */
+    @RequestMapping(value = "/bottles",
+            method = RequestMethod.POST,
+            params = {"dto"},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Void> createFromDTO(@Valid @RequestBody BottleCreateDTO bottle) throws URISyntaxException {
+        log.debug("REST request to save Bottle : {}", bottle);
+        if (bottle.getId() != null) {
+            return ResponseEntity.badRequest().header("Failure", "A new bottle cannot already have an ID").build();
+        }
+        Bottle savedBottle = bottleService.createFromDto(bottle);
+        return ResponseEntity.created(new URI("/api/bottles/" + savedBottle.getId())).build();
+    }
+
+    /**
      * PUT  /bottles -> Updates an existing bottle.
      */
     @RequestMapping(value = "/bottles",
@@ -66,6 +89,20 @@ public class BottleResource {
             return create(bottle);
         }
         bottleRepository.save(bottle);
+        return ResponseEntity.ok().build();
+    }
+
+    /**
+     * PUT  /bottles -> Updates an existing bottle.
+     */
+    @RequestMapping(value = "/bottles",
+        method = RequestMethod.PUT,
+        params = {"drink"},
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Void> drink(@Valid @RequestBody BottleDrinkDTO bottle) throws URISyntaxException {
+        log.debug("REST request to drink Bottle : {}", bottle);
+        bottleService.drinkBottle(bottle);
         return ResponseEntity.ok().build();
     }
 

@@ -13,11 +13,14 @@
     "angular-resource": "1.4.0",
     "angular-cookies": "1.4.0",
     "angular-sanitize": "1.4.0",
+    "angular-bootstrap": "0.13.0",
     "angular-local-storage": "0.2.0",
     "swagger-ui": "2.0.24",
     "angular-cache-buster": "0.4.3",
     "ngInfiniteScroll": "1.2.0",
-    "at-table": "~1.0.4"
+    "at-table": "~1.0.4",
+    "underscore": "1.8.3",
+    "moment": "2.10.3"
   },
   "devDependencies": {
     "angular-mocks": "1.4.0",

@@ -46,6 +46,14 @@ public class BottleLife implements Serializable {
     @JsonIgnore
     private User user;
 
+    public BottleLife() {
+    }
+
+    public BottleLife(User user, DateTime boughtDate) {
+        this.user = user;
+        this.boughtDate = boughtDate;
+    }
+
     public Long getId() {
         return id;
     }

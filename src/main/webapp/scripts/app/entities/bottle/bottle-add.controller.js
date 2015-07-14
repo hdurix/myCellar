@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mycellarApp')
-    .controller('BottleAddController', function ($scope, Bottle, Country, Category, BottleLife, ParseLinks, MycellarOptions) {
+    .controller('BottleAddController', function ($scope, $state, Bottle, Country, Category, BottleLife, ParseLinks, MycellarOptions) {
 
         $scope.bottle = {};
         $scope.country = {};
@@ -13,22 +13,28 @@ angular.module('mycellarApp')
                 $('#saveCountryModal').modal('hide');
                 // Ajout du nouveau pays
                 $scope.allData.push(data);
-                $scope.bottle.country = data;
+                $scope.country = data;
             });
         };
 
         $scope.save = function () {
-            if ($scope.bottle.id != null) {
-                Bottle.update($scope.bottle,
-                    function () {
-                        $scope.refresh();
-                    });
-            } else {
-                Bottle.save($scope.bottle,
-                    function () {
-                        $scope.refresh();
-                    });
-            }
+            Bottle.createFromDto($scope.bottle,
+                function () {
+                    $state.go("bottle");
+                });
         };
+
+        $scope.changeYear = function() {
+            if (angular.isUndefined($scope.bottle.category)) {
+                return;
+            }
+            var existing = _.findWhere($scope.bottle.category.bottles, {year: $scope.bottle.year});
+            if(angular.isDefined(existing)) {
+                $scope.bottle.price = existing.price;
+                $scope.priceDisabled = angular.isDefined(existing.price);
+            } else {
+                $scope.priceDisabled = false;
+            }
+        }
 
     });

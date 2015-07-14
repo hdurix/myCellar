@@ -1,19 +1,11 @@
 'use strict';
 
 angular.module('mycellarApp')
-    .controller('BottleController', function ($scope, $filter, Bottle, Country, Category, BottleLife, ParseLinks, MycellarOptions) {
+    .controller('BottleController', function ($scope, $filter, Bottle, Country, Category, BottleLife,
+            ParseLinks, Principal, MycellarOptions) {
         $scope.bottles = [];
         $scope.filteredBottles = [];
-        $scope.categorys = Category.query();
-        $scope.bottlelifes = BottleLife.query();
         $scope.page = 1;
-        $scope.loadAll = function() {
-            Bottle.dto(function(data) {
-                $scope.bottles = data;
-                $scope.filteredBottles = data;
-            });
-        };
-        $scope.loadAll();
 
         $scope.options = MycellarOptions;
 
@@ -22,7 +14,7 @@ angular.module('mycellarApp')
             fillLastPage: true
         }
 
-        $scope.search = {};
+        $scope.search = {category :{}};
 
         $scope.allData = Country.withDependencies();
 
@@ -63,5 +55,49 @@ angular.module('mycellarApp')
 
         $scope.filterBottles = function() {
             $scope.filteredBottles = $filter('filter')($scope.bottles, $scope.search);
+        }
+
+        $scope.loadAll = function() {
+            Bottle.dto(function(data) {
+                $scope.bottles = data;
+                Principal.identity().then(function(account) {
+                    $scope.user = account.login;
+                    var f = _.findWhere($scope.bottles, {user : $scope.user});
+                    if (angular.isDefined(f)) {
+                        $scope.search.user = $scope.user;
+                    }
+                    $scope.filterBottles();
+                });
+            });
+        };
+        $scope.loadAll();
+
+        $scope.drinkBottle = function(bottle) {
+            var b = {
+                id:             bottle.id,
+                drinkedDate:    new Date(),
+                number:     1
+            };
+            Bottle.drink(b, $scope.loadAll);
+        }
+
+        $scope.buyBottle = function(bottle) {
+            var b = {
+                price:      bottle.price,
+                year:       bottle.year,
+                category:   bottle.category,
+                number:     1
+            };
+            Bottle.createFromDto(b, $scope.loadAll);
+        }
+
+        $scope.summary = function(bottle) {
+            var dates = "";
+            _.each(_.pluck(bottle.bottleLifes, 'drinkedDate'), function(b) {
+                if(b != null) {
+                    dates += moment(b).format('L') + "<br/> ";
+                }
+            });
+            return dates;
         }
     });

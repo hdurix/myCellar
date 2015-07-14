@@ -65,7 +65,7 @@
                         class="form-control">
                     <input type="text" placeholder="-- Vigneron --" ng-model="search.vineward" ng-change="filterBottles()"
                         class="form-control">
-                    <input type="text" placeholder="-- Catégorie --" ng-model="search.category" ng-change="filterBottles()"
+                    <input type="text" placeholder="-- Bouteille --" ng-model="search.category.name" ng-change="filterBottles()"
                         class="form-control">
                     <input type="text" placeholder="-- Année --" ng-model="search.year" ng-change="filterBottles()"
                         class="form-control">
@@ -84,13 +84,26 @@
                         <td at-implicit at-sortable at-attribute="appellation" at-title="Appellation"></td>
                         <td at-implicit at-sortable at-attribute="domain" at-title="Domaine"></td>
                         <td at-implicit at-sortable at-attribute="vineward" at-title="Vigneron"></td>
-                        <td at-implicit at-sortable at-attribute="category" at-title="Catégorie"></td>
+                        <td at-implicit at-sortable at-attribute="category.name" at-title="Bouteille"></td>
                         <td at-implicit at-sortable at-attribute="color" at-title="Couleur"></td>
                         <td at-implicit at-sortable at-attribute="year" at-title="Année"></td>
                         <td at-implicit at-sortable at-attribute="price | euro | missing" at-title="Prix"></td>
-                        <td at-implicit at-sortable at-attribute="number" at-title="Nombre"></td>
-                        <td><button type="button" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-glass"></span></button></td>
-                        <td><button type="button" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-shopping-cart"></span></button></td>
+                        <td at-implicit at-sortable at-attribute="numberStocked" at-title="En stock">
+                        <td at-implicit at-sortable at-attribute="numberDrinked" at-title="Bu">
+                            <span class="pull-right glyphicon glyphicon-eye-open"
+                                  data-tooltip-html-unsafe="{{summary(item)}}"
+                                  ng-if="item.numberDrinked"></span>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-xs btn-default" ng-click="drinkBottle(item)"
+                                    tooltip="J'en ai bu une" ng-if="item.numberStocked && item.user === user">
+                                <span class="glyphicon glyphicon-glass"></span>
+                            </button>
+                            <button type="button" class="btn btn-xs btn-default" ng-click="buyBottle(item)"
+                                    tooltip="J'en ai acheté une">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                            </button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -101,6 +114,5 @@
             <at-pagination at-config="config" at-list="filteredBottles"></at-pagination>
         </div>
 
-        {{allData}}
     </div>
 </div>

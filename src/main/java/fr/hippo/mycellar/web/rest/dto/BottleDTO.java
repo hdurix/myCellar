@@ -1,25 +1,35 @@
 package fr.hippo.mycellar.web.rest.dto;
 
+import fr.hippo.mycellar.domain.Bottle;
 import fr.hippo.mycellar.domain.ColorEnum;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Hippolyte on 20/06/2015.
  */
 public class BottleDTO {
+    private final Long id;
     private final String country;
     private final String appellation;
     private final String domain;
     private final String vineward;
-    private final String category;
+    private final CategoryDTO category;
     private final Integer timeToWait;
     private final String color;
     private final Integer year;
     private final Float price;
     private final String user;
-    private final Long number;
+    private final Long numberStocked;
+    private final Long numberDrinked;
+    private final List<BottleLifeDTO> bottleLifes;
 
-    public BottleDTO(String country, String appellation, String domain, String vineward, String category,
-                     Integer timeToWait, String color, Integer year, Float price, String user, Long number) {
+    public BottleDTO(Long id, String country, String appellation, String domain, String vineward, CategoryDTO category,
+                     Integer timeToWait, String color, Integer year, Float price, String user, Long numberDrinked,
+                     Long numberStocked, List<BottleLifeDTO> bottleLifes) {
+        this.id = id;
         this.country = country;
         this.appellation = appellation;
         this.domain = domain;
@@ -30,7 +40,13 @@ public class BottleDTO {
         this.year = year;
         this.price = price;
         this.user = user;
-        this.number = number;
+        this.numberDrinked = numberDrinked;
+        this.numberStocked = numberStocked;
+        this.bottleLifes = bottleLifes;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getCountry() {
@@ -49,7 +65,7 @@ public class BottleDTO {
         return vineward;
     }
 
-    public String getCategory() {
+    public CategoryDTO getCategory() {
         return category;
     }
 
@@ -73,27 +89,39 @@ public class BottleDTO {
         return user;
     }
 
-    public Long getNumber() {
-        return number;
+    public Long getNumberDrinked() {
+        return numberDrinked;
+    }
+
+    public Long getNumberStocked() {
+        return numberStocked;
+    }
+
+    public List<BottleLifeDTO> getBottleLifes() {
+        return bottleLifes;
     }
 
     public static class Builder {
+        private Long id;
         private String country;
         private String appellation;
         private String domain;
         private String vineward;
-        private String category;
+        private CategoryDTO category;
         private Integer timeToWait;
         private String color;
         private Integer year;
         private Float price;
         private String user;
-        private Long number;
+        private Long numberDrinked;
+        private Long numberStocked;
+        private List<BottleLifeDTO> bottleLifes = new ArrayList<>();
 
         public Builder() {
         }
 
         public Builder reinit() {
+            id = null;
             country = null;
             appellation = null;
             domain = null;
@@ -104,7 +132,14 @@ public class BottleDTO {
             year = null;
             price = null;
             user = null;
-            number = null;
+            numberDrinked = null;
+            numberStocked = null;
+            bottleLifes = new ArrayList<>();
+            return this;
+        }
+
+        public Builder setId(Long id) {
+            this.id = id;
             return this;
         }
 
@@ -128,7 +163,7 @@ public class BottleDTO {
             return this;
         }
 
-        public Builder setCategory(String category) {
+        public Builder setCategory(CategoryDTO category) {
             this.category = category;
             return this;
         }
@@ -158,13 +193,21 @@ public class BottleDTO {
             return this;
         }
 
-        public Builder setNumber(Long number) {
-            this.number = number;
+        public Builder setBottleLifes(List<BottleLifeDTO> bottleLifes) {
+            this.bottleLifes = bottleLifes;
+            return this;
+        }
+
+        public Builder addBottleLife(BottleLifeDTO bottleLife) {
+            bottleLifes.add(bottleLife);
             return this;
         }
 
         public BottleDTO build() {
-            return new BottleDTO(country, appellation, domain, vineward, category, timeToWait, color, year, price, user, number);
+            long numberDrinked = (long) bottleLifes.stream().map(BottleLifeDTO::getDrinkedDate).filter(Objects::nonNull).count();
+            long numberStocked = bottleLifes.size() - numberDrinked;
+            return new BottleDTO(id, country, appellation, domain, vineward, category, timeToWait, color, year, price,
+                user, numberDrinked, numberStocked, bottleLifes);
         }
     }
 }

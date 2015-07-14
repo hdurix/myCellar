@@ -19,7 +19,7 @@ angular.module('mycellarApp')
             });
         };
 
-        $scope.save = function () {
+        $scope.saveAppelation = function () {
             if ($scope.appellation.id != null) {
                 Appellation.update($scope.appellation,
                     function () {

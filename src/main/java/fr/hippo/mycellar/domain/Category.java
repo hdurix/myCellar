@@ -84,7 +84,15 @@ public class Category implements Serializable {
     }
 
     public void setBottles(Set<Bottle> bottles) {
-        this.bottles = bottles;
+        this.bottles.clear();
+        bottles.forEach(this::addBottle);
+    }
+
+    public void addBottle(Bottle bottle) {
+        if (bottle != null) {
+            bottle.setCategory(this);
+            this.bottles.add(bottle);
+        }
     }
 
     @Override

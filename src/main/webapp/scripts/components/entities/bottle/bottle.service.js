@@ -12,6 +12,8 @@ angular.module('mycellarApp')
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'createFromDto': { method:'POST', params: {dto: true} },
+            'drink': { method:'PUT', params: {drink: true} }
         });
     });

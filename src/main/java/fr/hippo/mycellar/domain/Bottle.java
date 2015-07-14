@@ -82,7 +82,15 @@ public class Bottle implements Serializable {
     }
 
     public void setBottleLifes(Set<BottleLife> bottleLifes) {
-        this.bottleLifes = bottleLifes;
+        this.bottleLifes.clear();
+        bottleLifes.forEach(this::addBottleLife);
+    }
+
+    public void addBottleLife(BottleLife bottleLife) {
+        if (bottleLife != null) {
+            bottleLife.setBottle(this);
+            this.bottleLifes.add(bottleLife);
+        }
     }
 
     @Override

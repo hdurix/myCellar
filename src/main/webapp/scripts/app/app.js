@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mycellarApp', ['LocalStorageModule',
-    'ngResource', 'ui.router', 'ngCookies', 'ngCacheBuster', 'infinite-scroll', 'angular-table'])
+    'ngResource', 'ui.router', 'ngCookies', 'ngCacheBuster', 'infinite-scroll', 'angular-table', 'ui.bootstrap'])
 
     .run(function ($rootScope, $location, $window, $http, $state,  Auth, Principal, ENV, VERSION) {
         $rootScope.ENV = ENV;

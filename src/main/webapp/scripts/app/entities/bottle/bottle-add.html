@@ -1,5 +1,6 @@
 
 <div ng-include="'scripts/app/entities/country/country-add-modal.html'"></div>
+<div ng-include="'scripts/app/entities/appellation/appellation-add-modal.html'"></div>
 
 <div class="panel panel-primary">
 
@@ -24,7 +25,7 @@
                 <div class="col-xs-9 col-sm-10 form-group">
                     <label>Pays</label>
                     <select class="form-control" name="country"
-                            ng-model="bottle.country"
+                            ng-model="country"
                             ng-options="country as country.name for country in allData">
                     </select>
                 </div>
@@ -37,48 +38,72 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label>Appellation</label>
-                <select class="form-control" name="appellation" ng-disabled="!bottle.country"
-                        ng-model="bottle.appellation"
-                        ng-options="appellation as appellation.name for appellation in bottle.country.appellations">
-                </select>
+            <div class="row">
+                <div class="col-xs-9 col-sm-10 form-group">
+                    <label>Appellation</label>
+                    <select class="form-control" name="appellation" ng-disabled="!country || !country.id"
+                            ng-model="appellation"
+                            ng-options="appellation as appellation.name for appellation in country.appellations">
+                    </select>
+                </div>
+                <div class="col-xs-3 col-sm-2">
+                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
+                            data-target="#saveAppellationModal" ng-click="clear()"
+                            style="margin-top: 27px;" ng-disabled="!country || !country.id">
+                        <span class="glyphicon glyphicon-plus"></span> <span>Nouveau</span>
+                    </button>
+                </div>
             </div>
 
             <div class="form-group">
                 <label>Domaine</label>
-                <select class="form-control" name="domain" ng-disabled="!bottle.appellation"
-                        ng-model="bottle.domain"
-                        ng-options="domain as domain.name for domain in bottle.appellation.domains">
+                <select class="form-control" name="domain" ng-disabled="!appellation"
+                        ng-model="domain"
+                        ng-options="domain as domain.name for domain in appellation.domains">
                 </select>
             </div>
 
             <div class="form-group">
                 <label>Vigneron</label>
-                <select class="form-control" name="vineward" ng-disabled="!bottle.domain"
-                        ng-model="bottle.vineward"
-                        ng-options="vineward as vineward.name for vineward in bottle.domain.vinewards">
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Catégorie</label>
-                <select class="form-control" name="category" ng-disabled="!bottle.vineward"
-                        ng-model="bottle.category"
-                        ng-options="category as category.name for category in bottle.vineward.categorys">
+                <select class="form-control" name="vineward" ng-disabled="!domain"
+                        ng-model="vineward"
+                        ng-options="vineward as vineward.name for vineward in domain.vinewards">
                 </select>
             </div>
 
             <div class="form-group">
                 <label>Bouteille</label>
-                <select class="form-control" name="bottle" ng-disabled="!bottle.category"
-                        ng-model="bottle.bottle"
-                        ng-options="bottle as bottle.year for bottle in bottle.category.bottles">
+                <select class="form-control" name="category" ng-disabled="!vineward"
+                        ng-model="bottle.category"
+                        ng-options="category as category.name for category in vineward.categorys">
                 </select>
             </div>
 
             <div class="form-group">
-                <label>Number</label>
+                <label>Année</label>
+                <input type="number" class="form-control" name="year"
+                       ng-model="bottle.year" required ng-change="changeYear()">
+
+                <div ng-show="editForm.year.$invalid">
+                    <p class="help-block"
+                       ng-show="editForm.year.$error.required">
+                        This field is required.
+                    </p>
+                    <p class="help-block"
+                       ng-show="editForm.year.$error.number">
+                        This field should be a number.
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Prix</label>
+                <input type="number" class="form-control" name="price"
+                       ng-model="bottle.price" ng-disabled="priceDisabled">
+            </div>
+
+            <div class="form-group">
+                <label>Nombre</label>
                 <input type="number" class="form-control" name="number"
                        ng-model="bottle.number" required>
 
