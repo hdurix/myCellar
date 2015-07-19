@@ -2,7 +2,9 @@ package fr.hippo.mycellar.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import fr.hippo.mycellar.domain.Appellation;
+import fr.hippo.mycellar.domain.Country;
 import fr.hippo.mycellar.repository.AppellationRepository;
+import fr.hippo.mycellar.repository.CountryRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -27,22 +29,25 @@ public class AppellationResource {
     private final Logger log = LoggerFactory.getLogger(AppellationResource.class);
 
     @Inject
+    private CountryRepository countryRepository;
+
+    @Inject
     private AppellationRepository appellationRepository;
 
     /**
      * POST  /appellations -> Create a new appellation.
      */
     @RequestMapping(value = "/appellations",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Void> create(@Valid @RequestBody Appellation appellation) throws URISyntaxException {
+    public ResponseEntity<Appellation> create(@Valid @RequestBody Appellation appellation) throws URISyntaxException {
         log.debug("REST request to save Appellation : {}", appellation);
         if (appellation.getId() != null) {
-            return ResponseEntity.badRequest().header("Failure", "A new appellation cannot already have an ID").build();
+            return ResponseEntity.badRequest().header("Failure", "A new appellation cannot already have an ID").body(null);
         }
-        appellationRepository.save(appellation);
-        return ResponseEntity.created(new URI("/api/appellations/" + appellation.getId())).build();
+        Appellation savedAppellation = appellationRepository.save(appellation);
+        return ResponseEntity.created(new URI("/api/appellations/" + appellation.getId())).body(savedAppellation);
     }
 
     /**
@@ -52,33 +57,36 @@ public class AppellationResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Void> update(@Valid @RequestBody Appellation appellation) throws URISyntaxException {
+    public ResponseEntity<Appellation> update(@Valid @RequestBody Appellation appellation) throws URISyntaxException {
         log.debug("REST request to update Appellation : {}", appellation);
         if (appellation.getId() == null) {
             return create(appellation);
         }
-        appellationRepository.save(appellation);
-        return ResponseEntity.ok().build();
+        Appellation savedAppellation = appellationRepository.save(appellation);
+        return new ResponseEntity<>(savedAppellation, HttpStatus.OK);
     }
 
     /**
      * GET  /appellations -> get all the appellations.
      */
     @RequestMapping(value = "/appellations",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<Appellation> getAll() {
+    public List<Appellation> getAll(@RequestParam(value = "countryId", required = false) Long countryId) {
         log.debug("REST request to get all Appellations");
-        return appellationRepository.findAll();
+        if (countryId != null) {
+            return appellationRepository.findAllByCountry(countryRepository.findOne(countryId));
+        }
+        return appellationRepository.findAllWithCountry();
     }
 
     /**
      * GET  /appellations/:id -> get the "id" appellation.
      */
     @RequestMapping(value = "/appellations/{id}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Appellation> get(@PathVariable Long id) {
         log.debug("REST request to get Appellation : {}", id);
@@ -93,8 +101,8 @@ public class AppellationResource {
      * DELETE  /appellations/:id -> delete the "id" appellation.
      */
     @RequestMapping(value = "/appellations/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.DELETE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public void delete(@PathVariable Long id) {
         log.debug("REST request to delete Appellation : {}", id);

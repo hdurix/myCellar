@@ -25,7 +25,8 @@ public class MailConfiguration implements EnvironmentAware {
     private static final String PROP_TLS = "tls";
     private static final String PROP_AUTH = "auth";
     private static final String PROP_SMTP_AUTH = "mail.smtp.auth";
-    private static final String PROP_STARTTLS = "mail.smtp.starttls.enable";
+    private static final String PROP_STARTTLS_ENABLED = "mail.smtp.starttls.enable";
+    private static final String PROP_STARTTLS_REQUIRED = "mail.smtp.starttls.required";
     private static final String PROP_TRANSPORT_PROTO = "mail.transport.protocol";
 
     private final Logger log = LoggerFactory.getLogger(MailConfiguration.class);
@@ -61,8 +62,11 @@ public class MailConfiguration implements EnvironmentAware {
         sender.setPassword(password);
 
         Properties sendProperties = new Properties();
-        sendProperties.setProperty(PROP_SMTP_AUTH, auth.toString());
-        sendProperties.setProperty(PROP_STARTTLS, tls.toString());
+//        sendProperties.setProperty(PROP_SMTP_AUTH, auth.toString());
+//        sendProperties.setProperty(PROP_STARTTLS, tls.toString());
+        sendProperties.setProperty(PROP_STARTTLS_ENABLED, "true");
+        sendProperties.setProperty(PROP_STARTTLS_REQUIRED, "true");
+        sendProperties.setProperty(PROP_SMTP_AUTH, "true");
         sendProperties.setProperty(PROP_TRANSPORT_PROTO, protocol);
         sender.setJavaMailProperties(sendProperties);
         return sender;

@@ -36,13 +36,13 @@ public class CountryResource {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Void> create(@Valid @RequestBody Country country) throws URISyntaxException {
+    public ResponseEntity<Country> create(@Valid @RequestBody Country country) throws URISyntaxException {
         log.debug("REST request to save Country : {}", country);
         if (country.getId() != null) {
-            return ResponseEntity.badRequest().header("Failure", "A new country cannot already have an ID").build();
+            return ResponseEntity.badRequest().header("Failure", "A new country cannot already have an ID").body(null);
         }
-        countryRepository.save(country);
-        return ResponseEntity.created(new URI("/api/countrys/" + country.getId())).build();
+        Country savedCountry = countryRepository.save(country);
+        return ResponseEntity.created(new URI("/api/countrys/" + country.getId())).body(savedCountry);
     }
 
     /**
@@ -52,13 +52,13 @@ public class CountryResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Void> update(@Valid @RequestBody Country country) throws URISyntaxException {
+    public ResponseEntity<Country> update(@Valid @RequestBody Country country) throws URISyntaxException {
         log.debug("REST request to update Country : {}", country);
         if (country.getId() == null) {
             return create(country);
         }
-        countryRepository.save(country);
-        return ResponseEntity.ok().build();
+        Country savedCountry = countryRepository.save(country);
+        return new ResponseEntity<>(savedCountry, HttpStatus.OK);
     }
 
     /**

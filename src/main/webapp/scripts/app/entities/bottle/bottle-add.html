@@ -26,12 +26,12 @@
                     <label>Pays</label>
                     <select class="form-control" name="country"
                             ng-model="country"
-                            ng-options="country as country.name for country in allData">
+                            ng-options="country as country.name for country in countries"
+                            ng-change="loadAppellations()">
                     </select>
                 </div>
                 <div class="col-xs-3 col-sm-2">
-                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
-                            data-target="#saveCountryModal" ng-click="clear()"
+                    <button class="btn btn-sm btn-primary" type="button" ng-click="addCountry()"
                             style="margin-top: 27px;">
                         <span class="glyphicon glyphicon-plus"></span> <span>Nouveau</span>
                     </button>
@@ -43,12 +43,11 @@
                     <label>Appellation</label>
                     <select class="form-control" name="appellation" ng-disabled="!country || !country.id"
                             ng-model="appellation"
-                            ng-options="appellation as appellation.name for appellation in country.appellations">
+                            ng-options="appellation as appellation.name for appellation in appellations">
                     </select>
                 </div>
                 <div class="col-xs-3 col-sm-2">
-                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
-                            data-target="#saveAppellationModal" ng-click="clear()"
+                    <button class="btn btn-sm btn-primary" type="button" ng-click="addAppellation()"
                             style="margin-top: 27px;" ng-disabled="!country || !country.id">
                         <span class="glyphicon glyphicon-plus"></span> <span>Nouveau</span>
                     </button>
@@ -120,10 +119,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-                    <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+                    <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Annuler</span>
                 </button>
                 <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
-                    <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Valider</span>
                 </button>
             </div>
         </form>

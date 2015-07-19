@@ -3,7 +3,7 @@
 angular.module('mycellarApp')
     .controller('AppellationController', function ($scope, Appellation, Country, Domain) {
         $scope.appellations = [];
-        $scope.countrys = Country.query();
+        $scope.countries = Country.query();
         $scope.domains = Domain.query();
         $scope.loadAll = function() {
             Appellation.query(function(result) {

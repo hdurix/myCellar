@@ -25,10 +25,9 @@ public class Domain implements Serializable {
     private String name;
 
     @ManyToOne
-    @JsonIgnore
     private Appellation appellation;
 
-    @OneToMany(mappedBy = "domain")
+    @OneToMany(mappedBy = "domain", fetch = FetchType.LAZY)
     private Set<Vineward> vinewards = new HashSet<>();
 
     public Long getId() {

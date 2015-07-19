@@ -16,8 +16,6 @@ angular.module('mycellarApp')
 
         $scope.search = {category :{}};
 
-        $scope.allData = Country.withDependencies();
-
         $scope.showUpdate = function (id) {
             Bottle.get({id: id}, function(result) {
                 $scope.bottle = result;

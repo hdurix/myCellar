@@ -2,11 +2,11 @@
 
 angular.module('mycellarApp')
     .controller('CountryController', function ($scope, Country, Appellation) {
-        $scope.countrys = [];
+        $scope.countries = [];
         $scope.appellations = Appellation.query();
         $scope.loadAll = function() {
             Country.query(function(result) {
-               $scope.countrys = result;
+               $scope.countries = result;
             });
         };
         $scope.loadAll();

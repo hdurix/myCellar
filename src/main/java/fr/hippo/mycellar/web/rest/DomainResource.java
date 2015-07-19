@@ -2,6 +2,7 @@ package fr.hippo.mycellar.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import fr.hippo.mycellar.domain.Domain;
+import fr.hippo.mycellar.repository.AppellationRepository;
 import fr.hippo.mycellar.repository.DomainRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,9 @@ import java.util.Optional;
 public class DomainResource {
 
     private final Logger log = LoggerFactory.getLogger(DomainResource.class);
+
+    @Inject
+    private AppellationRepository appellationRepository;
 
     @Inject
     private DomainRepository domainRepository;
@@ -68,9 +72,12 @@ public class DomainResource {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<Domain> getAll() {
+    public List<Domain> getAll(@RequestParam(value = "appellationId", required = false) Long appellationId) {
         log.debug("REST request to get all Domains");
-        return domainRepository.findAll();
+        if (appellationId != null) {
+            return domainRepository.findAllByAppellation(appellationRepository.findOne(appellationId));
+        }
+        return domainRepository.findAllWithAppellation();
     }
 
     /**
