@@ -19,7 +19,7 @@ angular.module('mycellarApp')
             });
         };
 
-        $scope.save = function () {
+        $scope.saveDomain = function () {
             if ($scope.domain.id != null) {
                 Domain.update($scope.domain,
                     function () {
@@ -57,7 +57,7 @@ angular.module('mycellarApp')
 
         $scope.clear = function () {
             $scope.domain = {name: null, id: null};
-            $scope.editForm.$setPristine();
+//            $scope.editForm.$setPristine();
             $scope.editForm.$setUntouched();
         };
     });

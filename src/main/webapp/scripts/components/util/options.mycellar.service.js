@@ -2,10 +2,12 @@
 
 angular.module('mycellarApp')
     .service('MycellarOptions', function () {
-        return this.colors = {
-            RED : "Rouge",
-            WHITE : "Blanc",
-            PINK : "Rosé",
-            YELLOW : "Jaune"
+        return this.options = {
+            colors : {
+                RED : "Rouge",
+                WHITE : "Blanc",
+                PINK : "Rosé",
+                YELLOW : "Jaune"
+            }
         }
     });

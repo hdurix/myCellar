@@ -56,7 +56,7 @@ angular.module('mycellarApp')
 
         $scope.clear = function () {
             $scope.country = {name: null, id: null};
-            $scope.editForm.$setPristine();
+//            $scope.editForm.$setPristine();
             $scope.editForm.$setUntouched();
         };
     });

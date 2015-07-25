@@ -3,13 +3,13 @@
 
 <div>
 
-    <h2>Countrys</h2>
+    <h2>Pays</h2>
 
     <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#saveCountryModal" ng-click="clear()">
-                    <span class="glyphicon glyphicon-flash"></span> <span>Create a new Country</span>
+                    <span class="glyphicon glyphicon-flash"></span> <span>Ajouter un nouveau pays</span>
                 </button>
             </div>
         </div>
@@ -45,7 +45,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
+                    <th>Nom</th>
                     <th></th>
                 </tr>
             </thead>
@@ -57,17 +57,17 @@
                         <button type="submit"
                                 ui-sref="countryDetail({id:country.id})"
                                 class="btn btn-info btn-sm">
-                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> View</span>
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Visualiser</span>
                         </button>
                         <button type="submit"
                                 ng-click="showUpdate(country.id)"
                                 class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Edit</span>
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Modifier</span>
                         </button>
                         <button type="submit"
                                 ng-click="delete(country.id)"
                                 class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Delete</span>
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Supprimer</span>
                         </button>
                     </td>
                 </tr>

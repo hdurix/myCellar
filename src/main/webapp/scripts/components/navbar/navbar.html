@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
@@ -28,26 +28,22 @@
                                 <span>
                                     <span class="glyphicon glyphicon-th-list"></span>
                                     <span class="hidden-tablet">
-                                        Entities
+                                        Listes
                                     </span>
                                     <b class="caret"></b>
                                 </span>
                     </a>
                     <ul class="dropdown-menu">
                         <li ui-sref-active="active" ><a ui-sref="country"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span >country</span></a></li>
+                        &#xA0;<span >Pays</span></a></li>
                         <li ui-sref-active="active" ><a ui-sref="appellation"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span >appellation</span></a></li>
+                        &#xA0;<span >Appellations</span></a></li>
                         <li ui-sref-active="active" ><a ui-sref="domain"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span >domain</span></a></li>
+                        &#xA0;<span >Domaines</span></a></li>
                         <li ui-sref-active="active" ><a ui-sref="vineward"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span >vineward</span></a></li>
+                        &#xA0;<span >Vignerons</span></a></li>
                         <li ui-sref-active="active" ><a ui-sref="category"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span >category</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="bottleLife"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span >bottleLife</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="bottle"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span >bottle</span></a></li>
+                        &#xA0;<span >Bouteilles</span></a></li>
                         <!-- JHipster will add entities to the menu here -->
                     </ul>
                 </li>
@@ -56,25 +52,25 @@
                                 <span>
                                     <span class="glyphicon glyphicon-user"></span>
                                     <span class="hidden-tablet">
-                                        Account
+                                        Compte
                                     </span>
                                     <b class="caret"></b>
                                 </span>
                     </a>
                     <ul class="dropdown-menu">
                         <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="settings"><span class="glyphicon glyphicon-wrench"></span>
-                            &#xA0;<span>Settings</span></a></li>
+                            &#xA0;<span>Paramètres</span></a></li>
                         <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="password"><span class="glyphicon glyphicon-lock"></span>
-                            &#xA0;<span>Password</span></a></li>
+                            &#xA0;<span>Mot de passe</span></a></li>
                         <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="sessions"><span class="glyphicon glyphicon-cloud"></span>
                             &#xA0;<span>Sessions</span></a></li>
                         <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span>
-                            &#xA0;<span>Log out</span></a></li>
+                            &#xA0;<span>Se déconnecter</span></a></li>
                         <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span>
-                            &#xA0;<span>Authenticate</span></a></li>
+                            &#xA0;<span>S'identitifier</span></a></li>
 
                         <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="register"><span class="glyphicon glyphicon-plus-sign"></span>
-                            &#xA0;<span>Register</span></a></li>
+                            &#xA0;<span>Créer un compte</span></a></li>
                     </ul>
                 </li>
                 <li ng-class="{active: $state.includes('admin')}"  ng-switch-when="true" has-role="ROLE_ADMIN" class="dropdown pointer">

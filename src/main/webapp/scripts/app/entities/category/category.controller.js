@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('mycellarApp')
-    .controller('CategoryController', function ($scope, Category, Vineward, Bottle, ParseLinks) {
+    .controller('CategoryController', function ($scope, Category, Vineward, Bottle, ParseLinks, MycellarOptions) {
+        $scope.options = MycellarOptions;
         $scope.categorys = [];
         $scope.vinewards = Vineward.query();
         $scope.bottles = Bottle.query();
@@ -25,7 +26,7 @@ angular.module('mycellarApp')
             });
         };
 
-        $scope.save = function () {
+        $scope.saveCategory = function () {
             if ($scope.category.id != null) {
                 Category.update($scope.category,
                     function () {
@@ -63,7 +64,7 @@ angular.module('mycellarApp')
 
         $scope.clear = function () {
             $scope.category = {name: null, color: null, timeToWait: null, id: null};
-            $scope.editForm.$setPristine();
+//            $scope.editForm.$setPristine();
             $scope.editForm.$setUntouched();
         };
     });

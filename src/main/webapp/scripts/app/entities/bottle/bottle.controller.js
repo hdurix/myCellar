@@ -47,7 +47,7 @@ angular.module('mycellarApp')
 
         $scope.clear = function () {
             $scope.bottle = {year: null, price: null, image: null, id: null};
-            $scope.editForm.$setPristine();
+//            $scope.editForm.$setPristine();
             $scope.editForm.$setUntouched();
         };
 

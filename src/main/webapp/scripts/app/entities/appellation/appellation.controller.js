@@ -57,7 +57,7 @@ angular.module('mycellarApp')
 
         $scope.clear = function () {
             $scope.appellation = {name: null, id: null};
-            $scope.editForm.$setPristine();
+//            $scope.editForm.$setPristine();
             $scope.editForm.$setUntouched();
         };
     });

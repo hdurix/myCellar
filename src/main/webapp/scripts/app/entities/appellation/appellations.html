@@ -1,3 +1,6 @@
+
+<div ng-include="'scripts/app/entities/appellation/appellation-add-modal.html'"></div>
+
 <div>
 
     <h2>Appellations</h2>
@@ -6,7 +9,7 @@
         <div class="row">
             <div class="col-md-4">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#saveAppellationModal" ng-click="clear()">
-                    <span class="glyphicon glyphicon-flash"></span> <span>Create a new Appellation</span>
+                    <span class="glyphicon glyphicon-flash"></span> <span>Ajouter une nouvelle appellation</span>
                 </button>
             </div>
         </div>
@@ -31,14 +34,14 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Name</label>
+                            <label>Nom</label>
                             <input type="text" class="form-control" name="name"
                                    ng-model="appellation.name" required>
 
                             <div ng-show="editForm.name.$invalid">
                                 <p class="help-block"
                                    ng-show="editForm.name.$error.required">
-                                    This field is required.
+                                    Ce champ est obligatoire.
                                 </p>
                             </div>
                         </div>
@@ -93,8 +96,8 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>country</th>
+                    <th>Nom</th>
+                    <th>Pays</th>
                     <th></th>
                 </tr>
             </thead>
@@ -107,17 +110,17 @@
                         <button type="submit"
                                 ui-sref="appellationDetail({id:appellation.id})"
                                 class="btn btn-info btn-sm">
-                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> View</span>
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Visualiser</span>
                         </button>
                         <button type="submit"
                                 ng-click="showUpdate(appellation.id)"
                                 class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Edit</span>
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Modifier</span>
                         </button>
                         <button type="submit"
                                 ng-click="delete(appellation.id)"
                                 class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Delete</span>
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Supprimer</span>
                         </button>
                     </td>
                 </tr>

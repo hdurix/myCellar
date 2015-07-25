@@ -7,8 +7,8 @@ angular.module('mycellarApp')
                 parent: 'account',
                 url: '/login',
                 data: {
-                    roles: [], 
-                    pageTitle: 'Authentication'
+                    roles: [],
+                    pageTitle: 'Connexion'
                 },
                 views: {
                     'content@': {
@@ -17,7 +17,7 @@ angular.module('mycellarApp')
                     }
                 },
                 resolve: {
-                    
+
                 }
             });
     });

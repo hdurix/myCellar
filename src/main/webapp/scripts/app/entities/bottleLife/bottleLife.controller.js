@@ -63,7 +63,7 @@ angular.module('mycellarApp')
 
         $scope.clear = function () {
             $scope.bottleLife = {boughtDate: null, drinkedDate: null, id: null};
-            $scope.editForm.$setPristine();
+//            $scope.editForm.$setPristine();
             $scope.editForm.$setUntouched();
         };
     });

@@ -1,69 +1,16 @@
+
+<div ng-include="'scripts/app/entities/vineward/vineward-add-modal.html'"></div>
+
 <div>
 
-    <h2>Vinewards</h2>
+    <h2>Vignerons</h2>
 
     <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#saveVinewardModal" ng-click="clear()">
-                    <span class="glyphicon glyphicon-flash"></span> <span>Create a new Vineward</span>
+                    <span class="glyphicon glyphicon-flash"></span> <span>Ajouter un nouveau vigneron</span>
                 </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="saveVinewardModal" tabindex="-1" role="dialog" aria-labelledby="myVinewardLabel"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
-
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                                ng-click="clear()">&times;</button>
-                        <h4 class="modal-title" id="myVinewardLabel">Ajout d'un vigneron</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>ID</label>
-                            <input type="text" class="form-control" name="id"
-                                   ng-model="vineward.id" readonly>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" class="form-control" name="name"
-                                   ng-model="vineward.name" required>
-
-                            <div ng-show="editForm.name.$invalid">
-                                <p class="help-block"
-                                   ng-show="editForm.name.$error.required">
-                                    This field is required.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Location</label>
-                            <input type="text" class="form-control" name="location"
-                                   ng-model="vineward.location">
-
-                        </div>
-
-                        <div class="form-group">
-                            <label>domain</label>
-                            <select class="form-control" name="domain" ng-model="vineward.domain.id" ng-options="domain.id as domain.name for domain in domains">
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Annuler</span>
-                        </button>
-                        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
-                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Valider</span>
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -98,9 +45,9 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Location</th>
-                    <th>domain</th>
+                    <th>Nom</th>
+                    <th>Localisation</th>
+                    <th>Domaine</th>
                     <th></th>
                 </tr>
             </thead>
@@ -114,17 +61,17 @@
                         <button type="submit"
                                 ui-sref="vinewardDetail({id:vineward.id})"
                                 class="btn btn-info btn-sm">
-                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> View</span>
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Visualiser</span>
                         </button>
                         <button type="submit"
                                 ng-click="showUpdate(vineward.id)"
                                 class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Edit</span>
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Modifier</span>
                         </button>
                         <button type="submit"
                                 ng-click="delete(vineward.id)"
                                 class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Delete</span>
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Supprimer</span>
                         </button>
                     </td>
                 </tr>

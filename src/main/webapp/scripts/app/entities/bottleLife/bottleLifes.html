@@ -50,7 +50,7 @@
                             <div ng-show="editForm.drinkedDate.$invalid">
                                 <p class="help-block"
                                    ng-show="editForm.drinkedDate.$error.required">
-                                    This field is required.
+                                    Ce champ est obligatoire.
                                 </p>
                                 <p class="help-block"
                                    ng-show="editForm.drinkedDate.$error.datetimelocal">
@@ -117,17 +117,17 @@
                         <button type="submit"
                                 ui-sref="bottleLifeDetail({id:bottleLife.id})"
                                 class="btn btn-info btn-sm">
-                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> View</span>
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Visualiser</span>
                         </button>
                         <button type="submit"
                                 ng-click="showUpdate(bottleLife.id)"
                                 class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Edit</span>
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Modifier</span>
                         </button>
                         <button type="submit"
                                 ng-click="delete(bottleLife.id)"
                                 class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Delete</span>
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Supprimer</span>
                         </button>
                     </td>
                 </tr>

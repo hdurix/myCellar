@@ -4,25 +4,28 @@
             <span class="hipster img-responsive img-rounded"></span>
         </div>
         <div class="col-md-8">
-            <h1>Welcome, Wine drinker!</h1>
-            <p class="lead">This is the homepage</p>
+            <h1>Bienvenue, cher amateurr de vin !</h1>
+            <p class="lead">Gérer votre cave en ligne.</p>
 
             <div ng-switch="isAuthenticated()">
                 <div class="alert alert-success" ng-switch-when="true">
-                    You are logged in as user "{{account.login}}".
+                    Vous êtes connecté en tant que "{{account.login}}".
                 </div>
 
                 <div class="alert alert-warning" ng-switch-when="false">
-                    If you want to <a href="#/login">authenticate</a>, you can use the example account:<br/>- User (login="user" and password="user").
+                    Si vous souhaitez vous <a href="#/login">connecter</a>,
+                    vous pouvez utiliser le compte d'exemple :<br/>
+                    - User (login="user" and mot de passe="user").
                 </div>
 
                 <div class="alert alert-warning" ng-switch-when="false">
-                    You don't have an account yet? <a href="#/register">Register a new account</a>
+                    Vous n'avez pas encore de compte ? <a href="#/register">Créer un nouveau compte</a>
                 </div>
             </div>
 
             <p>
-             <span>If you like MyCellar, don't forget to give us a star on</span>&nbsp;<a href="https://github.com/hdurix/myCellar" target="_blank">Github</a>!
+             <span>Si vous aimez MyCellar, n'oubliez pas de nous donner une note sur</span>
+                <a href="https://github.com/hdurix/myCellar" target="_blank">Github</a> !
             </p>
         </div>
     </div>

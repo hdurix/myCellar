@@ -40,13 +40,13 @@ public class DomainResource {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Void> create(@Valid @RequestBody Domain domain) throws URISyntaxException {
+    public ResponseEntity<Domain> create(@Valid @RequestBody Domain domain) throws URISyntaxException {
         log.debug("REST request to save Domain : {}", domain);
         if (domain.getId() != null) {
-            return ResponseEntity.badRequest().header("Failure", "A new domain cannot already have an ID").build();
+            return ResponseEntity.badRequest().header("Failure", "A new domain cannot already have an ID").body(null);
         }
-        domainRepository.save(domain);
-        return ResponseEntity.created(new URI("/api/domains/" + domain.getId())).build();
+        Domain savedDomain = domainRepository.save(domain);
+        return new ResponseEntity<>(savedDomain, HttpStatus.OK);
     }
 
     /**
@@ -56,13 +56,13 @@ public class DomainResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Void> update(@Valid @RequestBody Domain domain) throws URISyntaxException {
+    public ResponseEntity<Domain> update(@Valid @RequestBody Domain domain) throws URISyntaxException {
         log.debug("REST request to update Domain : {}", domain);
         if (domain.getId() == null) {
             return create(domain);
         }
-        domainRepository.save(domain);
-        return ResponseEntity.ok().build();
+        Domain savedDomain = domainRepository.save(domain);
+        return new ResponseEntity<>(savedDomain, HttpStatus.OK);
     }
 
     /**

@@ -25,7 +25,7 @@ angular.module('mycellarApp')
             });
         };
 
-        $scope.save = function () {
+        $scope.saveVineward = function () {
             if ($scope.vineward.id != null) {
                 Vineward.update($scope.vineward,
                     function () {
@@ -63,7 +63,7 @@ angular.module('mycellarApp')
 
         $scope.clear = function () {
             $scope.vineward = {name: null, location: null, id: null};
-            $scope.editForm.$setPristine();
+//            $scope.editForm.$setPristine();
             $scope.editForm.$setUntouched();
         };
     });
