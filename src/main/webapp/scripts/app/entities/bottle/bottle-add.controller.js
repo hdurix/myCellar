@@ -60,6 +60,7 @@ angular.module('mycellarApp')
         };
 
         $scope.save = function () {
+            $scope.bottle.category = $scope.category;
             Bottle.createFromDto($scope.bottle,
                 function () {
                     $state.go("bottle");

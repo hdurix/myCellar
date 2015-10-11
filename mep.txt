@@ -1,0 +1,2 @@
+yo jhipster:cloudfoundry 
+cf push -f ./deploy/cloudfoundry/manifest.yml -p target\mycellar-0.0.1-SNAPSHOT.war 
