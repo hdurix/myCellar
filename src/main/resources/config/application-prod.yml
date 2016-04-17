@@ -50,17 +50,5 @@ http:
     cache:
         timeToLiveInDays: 31
 
-mail:
-    host: smtp.gmail.com
-    port: 587
-    username: mycellar.app@gmail.com
-    password: mYcEll@r!2016
-    protocol: smtp
-    from: mycellar.app@gmail.com
-    smtp.auth: true
-    smtp.starttls.enable: true
-    smtp.starttls.required: true
-    smtp.timeout: 8500
-    smtp.ssl.trust: smtp.gmail.com
 
 

@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "FRIENDSHIP")
-public class Friendship extends AbstractAuditingEntity implements Serializable {
+public class Friendship implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,7 +18,7 @@ public class Friendship extends AbstractAuditingEntity implements Serializable {
     private User adder;
 
     @ManyToOne
-    private User addeed;
+    private User added;
 
     @Column
     private Boolean accepted;
@@ -39,12 +39,12 @@ public class Friendship extends AbstractAuditingEntity implements Serializable {
         this.adder = adder;
     }
 
-    public User getAddeed() {
-        return addeed;
+    public User getAdded() {
+        return added;
     }
 
-    public void setAddeed(User addeed) {
-        this.addeed = addeed;
+    public void setAdded(User added) {
+        this.added = added;
     }
 
     public Boolean getAccepted() {
@@ -84,7 +84,7 @@ public class Friendship extends AbstractAuditingEntity implements Serializable {
             "id='" + id + '\'' +
             ", accepted='" + accepted + '\'' +
             ", adder='" + (adder == null ? null : adder.getLogin()) + '\'' +
-            ", addeed='" + (addeed == null ? null : addeed.getLogin()) + '\'' +
+            ", added='" + (added == null ? null : added.getLogin()) + '\'' +
             "}";
     }
 }

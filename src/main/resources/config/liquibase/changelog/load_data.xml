@@ -27,9 +27,6 @@
         <loadData encoding="UTF-8" file="config/liquibase/bottle_lifes.csv"
                   separator=";" tableName="BOTTLELIFE"/>
 
-        <loadData encoding="UTF-8" file="config/liquibase/friendships.csv"
-                  separator=";" tableName="FRIENDSHIP"/>
-
     </changeSet>
 
 </databaseChangeLog>

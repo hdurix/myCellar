@@ -26,8 +26,6 @@ mail:
     smtp.timeout: 8500
     smtp.ssl.trust: smtp.gmail.com
 
-
-
 swagger:
     title: mycellar API
     description: mycellar applications and beyond!
@@ -35,3 +33,21 @@ swagger:
     contact:
     license: Apache 2.0
     licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.html
+
+spring:
+    jpa:
+        open-in-view: false
+        hibernate:
+            ddl-auto: none
+            naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
+    messages:
+        basename: classpath:/i18n/messages
+    mvc:
+        favicon:
+            enabled: false
+    thymeleaf:
+        mode: XHTML
+
+security:
+    basic:
+        enabled: false

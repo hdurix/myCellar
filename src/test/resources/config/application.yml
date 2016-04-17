@@ -24,7 +24,7 @@ spring:
         password:
 
     jpa:
-        database-platform: org.hibernate.dialect.H2Dialect
+        database-platform: fr.hippo.mycellar.domain.util.FixedH2Dialect
         database: H2
         openInView: false
         show_sql: true
@@ -58,3 +58,6 @@ swagger:
     contact:
     license: Apache 2.0
     licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.html
+
+application:
+    url: http://localhost:8080

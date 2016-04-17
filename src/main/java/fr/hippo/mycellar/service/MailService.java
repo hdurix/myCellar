@@ -4,6 +4,7 @@ import fr.hippo.mycellar.domain.User;
 import org.apache.commons.lang.CharEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -42,6 +43,9 @@ public class MailService {
     @Inject
     private SpringTemplateEngine templateEngine;
 
+    @Value("${application.url}")
+    private String applicationUrl;
+
     /**
      * System default email address that sends the e-mails.
      */
@@ -78,7 +82,7 @@ public class MailService {
         Locale locale = Locale.forLanguageTag(user.getLangKey());
         Context context = new Context(locale);
         context.setVariable("user", user);
-        context.setVariable("baseUrl", baseUrl);
+        context.setVariable("baseUrl", applicationUrl);
         String content = templateEngine.process("activationEmail", context);
         String subject = messageSource.getMessage("email.activation.title", null, locale);
         sendEmail(user.getEmail(), subject, content, false, true);
@@ -90,7 +94,7 @@ public class MailService {
         Locale locale = Locale.forLanguageTag(user.getLangKey());
         Context context = new Context(locale);
         context.setVariable("user", user);
-        context.setVariable("baseUrl", baseUrl);
+        context.setVariable("baseUrl", applicationUrl);
         String content = templateEngine.process("passwordResetEmail", context);
         String subject = messageSource.getMessage("email.reset.title", null, locale);
         sendEmail(user.getEmail(), subject, content, false, true);
