@@ -71,7 +71,7 @@ public class BottleRepositoryCustomImpl implements BottleRepositoryCustom {
                     .setPrice((Float) line[8])
                     .setUser((String) line[9]);
 
-            } else if (tmpBottleId != line[10] || tmpUser != line[9]) {
+            } else if (!Objects.equals(tmpBottleId, line[10]) || !Objects.equals(tmpUser, line[9])) {
                 //bottles
                 tmpBottleId = (Long) line[10];
                 tmpUser = (String) line[9];
